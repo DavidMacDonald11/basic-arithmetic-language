@@ -9,6 +9,9 @@ class Token:
     def __repr__(self):
         return f"{self.kind[0]}'{self.string}'"
 
+    def tree_repr(self, _):
+        return repr(self)
+
     def has(self, *strings):
         return self.string in strings
 
