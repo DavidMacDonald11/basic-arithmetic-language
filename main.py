@@ -17,8 +17,7 @@ def main():
             line = SourceLine(line)
             tokens = lexer.make_tokens(line)
             tree = parser.make_tree(tokens)
-            print(tokens)
-            print(tree)
+            print(tree.interpret())
         except LanguageError as error:
             print(error)
 

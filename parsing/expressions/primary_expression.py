@@ -1,3 +1,4 @@
+from math import floor, ceil
 from ..node import Node, PrimaryNode
 
 class PrimaryExpression(Node):
@@ -20,7 +21,23 @@ class PrimaryExpression(Node):
 
         return PrimaryExpression(left, expression, right)
 
+    def interpret(self):
+        value = self.expression.interpret()
+
+        match self.left.string:
+            case "(":
+                return value
+            case "|":
+                return abs(value)
+            case "_":
+                return floor(value)
+            case "^":
+                return ceil(value)
+
 class Number(PrimaryNode):
     @classmethod
     def construct(cls, parser):
         return Number(parser.expecting_of("Number"))
+
+    def interpret(self):
+        return (float if "." in self.token.string else int)(self.token.string)

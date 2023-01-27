@@ -17,3 +17,14 @@ class UnaryExpression(Node):
             return UnaryExpression(op, expression)
 
         return PrimaryExpression.construct(parser)
+
+    def interpret(self):
+        value = self.expression.interpret()
+
+        match self.op.string:
+            case "+":
+                return value
+            case "-":
+                return -value
+            case "~":
+                return round(value)
