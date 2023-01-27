@@ -33,7 +33,7 @@ class Lexer:
         if self.line.next() in "()|_^":
             return self.make_punctuator()
 
-        if self.line.next() in "~+=*/%":
+        if self.line.next() in "~+-*/%":
             return self.make_operator()
 
         if self.line.next() in "0123456789.":
